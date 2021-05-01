@@ -35,6 +35,6 @@ export class Instruction {
     @Column({nullable: true})
     temperature?: number
 
-    @ManyToOne(type => Recipe, recipe => recipe.instructions, {cascade: true, onDelete: "CASCADE"})
+    @ManyToOne(type => Recipe, recipe => recipe.instructions)
     recipe!: Recipe
 }

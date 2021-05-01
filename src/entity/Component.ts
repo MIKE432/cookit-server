@@ -23,11 +23,11 @@ export class Component {
     @Column()
     position!: number
 
-    @ManyToOne(type => Recipe, recipe => recipe.components, {cascade: true, onDelete: "CASCADE"})
+    @ManyToOne(type => Recipe, recipe => recipe.components)
     recipe!: Recipe
 
     @Field(() => Measurement)
-    @OneToOne(type => Measurement, measurement => measurement.component)
+    @OneToOne(type => Measurement, measurement => measurement.component, {cascade: true, onDelete: "CASCADE"})
     @JoinColumn()
     measurement!: Measurement
 }

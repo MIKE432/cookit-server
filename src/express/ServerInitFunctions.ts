@@ -16,7 +16,7 @@ async function initServer(app: Express) {
     await applyMiddlewares(app)
 }
 
-const checkEnvVariables = (env: any, variablesToCheck: [string]): Tuple<boolean, string> => {
+const checkEnvVariables = (env: any, variablesToCheck: string[]): Tuple<boolean, string> => {
     const returnVariable: Tuple<boolean, string> = {v1: true, v2: ""}
 
     variablesToCheck.forEach((value) => {
@@ -31,7 +31,7 @@ const checkEnvVariables = (env: any, variablesToCheck: [string]): Tuple<boolean,
 }
 
 export const runPreInit = (env: any): void => {
-    const checked = checkEnvVariables(env, ["PORT"])
+    const checked = checkEnvVariables(env, ["PORT", "API_KEY", "HOST_KEY"])
     if (!checked.v1)
         throw new EnvNotSatisfiedError(`necessary variable ${checked.v2} is not declared in .env file`)
 }

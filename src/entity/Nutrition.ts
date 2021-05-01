@@ -34,6 +34,6 @@ export class Nutrition {
     @Column({ default: 0 })
     fiber!: number
 
-    @OneToOne(type => Recipe, recipe => recipe.nutrition, {cascade: true, onDelete: "CASCADE"})
+    @OneToOne(type => Recipe, recipe => recipe.nutrition)
     recipe!: Recipe
 }

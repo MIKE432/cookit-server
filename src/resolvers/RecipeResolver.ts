@@ -21,6 +21,22 @@ export class RecipeResolver {
     }
 
     @Query(() => [Recipe], {nullable: false})
+    async scopedRecipes(@Arg("from") from: number, @Arg("to") to: number) {
+        return await getConnection()
+            .getRepository(Recipe)
+            .find({
+                skip: from,
+                take: to - from,
+                relations: [
+                    'nutrition',
+                    'instructions',
+                    'components',
+                    'components.measurement'
+                ]
+            })
+    }
+
+    @Query(() => [Recipe], {nullable: false})
     async recipes() {
         return await getConnection()
             .getRepository(Recipe)

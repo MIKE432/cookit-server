@@ -17,6 +17,6 @@ export class UserRating {
     @Column()
     countNegative!: number
 
-    @OneToOne(type => Recipe, recipe => recipe.userRating, {cascade: true, onDelete: "CASCADE"})
+    @OneToOne(type => Recipe, recipe => recipe.userRating)
     recipe!: Recipe
 }

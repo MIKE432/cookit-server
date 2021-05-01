@@ -7,7 +7,7 @@ import {Component} from "../entity/Component";
 export class MeasurementInput implements Partial<Measurement> {
 
     @Field()
-    quantity!: number
+    quantity!: string
 
     @Field()
     unit!: string

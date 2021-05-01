@@ -11,13 +11,13 @@ export class Measurement {
     id!: number
 
     @Field()
-    @Column({ default: 0 })
-    quantity!: number
+    @Column({ default: "" })
+    quantity!: string
 
     @Field()
     @Column({ default: "g" })
     unit!: string
 
-    @OneToOne(type => Component, component => component.measurement, {cascade: true, onDelete: "CASCADE"})
+    @OneToOne(type => Component, component => component.measurement)
     component!: Component
 }

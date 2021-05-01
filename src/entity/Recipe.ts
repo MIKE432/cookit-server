@@ -29,21 +29,29 @@ export class Recipe {
     description?: string
 
     @Field(() => [Instruction], {nullable: true})
-    @OneToMany(type => Instruction, instruction => instruction.recipe, {nullable: true})
+    @OneToMany(type => Instruction, instruction => instruction.recipe, {nullable: true, cascade: true})
     instructions?: Instruction[]
 
     @Field(() => [Component], {nullable: true})
-    @OneToMany(type => Component, component => component.recipe, {nullable: true})
+    @OneToMany(type => Component, component => component.recipe, {nullable: true, cascade: true})
     components?: Component[]
 
     @Field(() => [UserRating], {nullable: true})
-    @OneToOne(type => UserRating, userRating => userRating.recipe, {nullable: true})
+    @OneToOne(type => UserRating, userRating => userRating.recipe, {nullable: true, cascade: true})
     @JoinColumn()
     userRating?: UserRating
 
     @Field(() => Nutrition)
-    @OneToOne(type => Nutrition, nutrition => nutrition.recipe)
+    @OneToOne(type => Nutrition, nutrition => nutrition.recipe, {nullable: true, cascade: true})
     @JoinColumn()
-    nutrition!: Nutrition
+    nutrition?: Nutrition
 
+    @Field({nullable: true})
+    @Column({nullable: true})
+    thumbnailUrl?: string
+
+
+    @Field({nullable: true})
+    @Column({nullable: true})
+    beautyUrl?: string
 }

@@ -39,12 +39,12 @@ input InstructionInput {
 
 type Measurement {
   id: ID!
-  quantity: Float!
+  quantity: String!
   unit: String!
 }
 
 input MeasurementInput {
-  quantity: Float!
+  quantity: String!
   unit: String!
 }
 
@@ -75,9 +75,11 @@ input NutritionInput {
 type Query {
   recipe(id: Float!): Recipe!
   recipes: [Recipe!]!
+  scopedRecipes(from: Float!, to: Float!): [Recipe!]!
 }
 
 type Recipe {
+  beautyUrl: String
   components: [Component!]
   cookTimeInMinutes: Float
   description: String
@@ -86,10 +88,12 @@ type Recipe {
   instructions: [Instruction!]
   name: String!
   nutrition: Nutrition!
+  thumbnailUrl: String
   userRating: [UserRating!]
 }
 
 input RecipeInput {
+  beautyUrl: String
   components: [ComponentInput!]!
   cookTimeInMinutes: Float
   description: String
@@ -97,6 +101,7 @@ input RecipeInput {
   instructions: [InstructionInput!]
   name: String!
   nutrition: NutritionInput
+  thumbnailUrl: String
   userRating: UserRatingInput
 }
 

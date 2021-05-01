@@ -36,4 +36,10 @@ export class RecipeInput implements Partial<Recipe> {
 
     @Field(() => NutritionInput, {nullable: true})
     nutrition?: Nutrition
+
+    @Field({nullable: true})
+    thumbnailUrl?: string
+
+    @Field({nullable: true})
+    beautyUrl?: string
 }
